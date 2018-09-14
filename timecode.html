@@ -1,0 +1,73 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avolites WebAPI - Timecode</title>
+    <link href="styles/avolites-style.css" rel="stylesheet" />
+    <link href="styles/avolites-tabStyle.css" rel="stylesheet" />
+    <link href="styles/titan-playback-button.css" rel="stylesheet" />
+    <link href="styles/titan-timecode-button.css" rel="stylesheet" />
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
+    <script src="scripts/document-register-element.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/titan-webapi.js"></script>
+    <script src="scripts/titan-playback-button.js"></script>
+    <script src="scripts/titan-playback-fader.js"></script>
+    <script src="scripts/titan-timecode-button.js"></script>
+
+    <script>
+        //setTitanDebug(true);
+        startStatusUpdate();
+        setIPAddress("localhost");
+    </script>
+</head>
+<body>
+
+    <div class="avoHeader">
+        <a href="index.html"><img src="images\avoLogo.png" height="40px"></a>
+        <div class="avoHeaderText">TIMECODE</div>
+    </div>
+
+    <titan-timecode-button action="enable" enable="false" class="titan-timecode-button">DISABLE</titan-timecode-button>
+    <titan-timecode-button action="enable" enable="true" class="titan-timecode-button">ENABLE</titan-timecode-button>
+    <br />
+    <h1>Timecode Input 1</h1>
+    <titan-timecode-button action="play" sourceIndex="1" class="titan-timecode-button">PLAY</titan-timecode-button>
+    <titan-timecode-button action="pause" sourceIndex="1" class="titan-timecode-button">PAUSE</titan-timecode-button>
+       <titan-timecode-button action="restart" sourceIndex="1" class="titan-timecode-button">RESET</titan-timecode-button>
+    <br />
+    <titan-timecode-button action="source" sourceIndex="1" source="None" class="titan-timecode-button">OFF</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="1" source="Internal" class="titan-timecode-button">Stopwatch</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="1" source="UsbExpert" class="titan-timecode-button">Midi</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="1" source="Smpte" class="titan-timecode-button">SMPTE</titan-timecode-button>
+    <h1>Timecode Input 2</h1>
+    <titan-timecode-button action="play" sourceIndex="2" class="titan-timecode-button">PLAY</titan-timecode-button>
+    <titan-timecode-button action="pause" sourceIndex="2" class="titan-timecode-button">PAUSE</titan-timecode-button>
+    <titan-timecode-button action="restart" sourceIndex="2" class="titan-timecode-button">RESET</titan-timecode-button>
+    <br />
+    <titan-timecode-button action="source" sourceIndex="2" source="None" class="titan-timecode-button">OFF</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="2" source="Internal" class="titan-timecode-button">Stopwatch</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="2" source="UsbExpert" class="titan-timecode-button">Midi</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="2" source="Smpte" class="titan-timecode-button">SMPTE</titan-timecode-button>
+    <h1>Timecode Input 3</h1>
+    <titan-timecode-button action="play" sourceIndex="3" class="titan-timecode-button">PLAY</titan-timecode-button>
+    <titan-timecode-button action="pause" sourceIndex="3" class="titan-timecode-button">PAUSE</titan-timecode-button>
+    <titan-timecode-button action="restart" sourceIndex="3" class="titan-timecode-button">RESET</titan-timecode-button>
+    <br />
+    <titan-timecode-button action="source" sourceIndex="3" source="None" class="titan-timecode-button">OFF</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="3" source="Internal" class="titan-timecode-button">Stopwatch</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="3" source="UsbExpert" class="titan-timecode-button">Midi</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="3" source="Smpte" class="titan-timecode-button">SMPTE</titan-timecode-button>
+    <h1>Timecode Input 4</h1>
+    <titan-timecode-button action="play" sourceIndex="4" class="titan-timecode-button">PLAY</titan-timecode-button>
+    <titan-timecode-button action="pause" sourceIndex="4" class="titan-timecode-button">PAUSE</titan-timecode-button>
+    <titan-timecode-button action="restart" sourceIndex="4" class="titan-timecode-button">RESET</titan-timecode-button>
+    <br />
+    <titan-timecode-button action="source" sourceIndex="4" source="None" class="titan-timecode-button">OFF</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="4" source="Internal" class="titan-timecode-button">Stopwatch</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="4" source="UsbExpert" class="titan-timecode-button">Midi</titan-timecode-button>
+    <titan-timecode-button action="source" sourceIndex="4" source="Smpte" class="titan-timecode-button">SMPTE</titan-timecode-button>
+</body>
+</html>

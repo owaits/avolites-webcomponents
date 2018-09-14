@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="30">
+  <title>Avolites Web API</title>
+   <link rel="stylesheet" href="styles/jquery-ui.css">
+  <script src="scripts/jquery.js"></script>
+  <script src="scripts/jquery-ui.js"></script>
+  <script src="scripts/titan-webapi.js"></script>
+  <link rel="stylesheet" href="styles/style.css">
+      <script>
+        $.support.cors = true;
+
+    $(document).ready(function () {       
+		refresh();
+    });
+	
+	function refresh(){
+		$('#ipAddress').text(ipAddress());
+		
+		$('#status').text("No Connection");
+		deviceInfo(function(data)
+		{
+			$('#legend').text(data["Legend"]);
+			$('#version').text(data["SoftwareVersion"]["_Major"] + "." + data["SoftwareVersion"]["_Minor"] + "." + data["SoftwareVersion"]["_Build"]);
+			$('#show').text(data["ShowName"]);
+			$('#status').text("OK");
+		});
+	}
+	</script>
+	</head>
+	<body>
+        <div class="avoHeader">
+            <a href="index.html"><img src="images\avoLogo.png" height="40px"></a>
+            <div class="avoHeaderText">ADMIN</div>
+        </div>
+	<div id="container">
+	<table>
+		<tr>
+			<td class="settingHeader">Status:</td>
+			<td><div id="status"></div></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="settingHeader">IP Address:</td>
+			<td><div id="ipAddress"></div></td>
+			<td width="100"><div id="medialabel" onclick="changeIpAddress();refresh();" >Set</div></td>
+		</tr>
+		<tr>
+			<td class="settingHeader">Console:</td>
+			<td><div id="legend"></div></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="settingHeader">Software Version:</td>
+			<td><div id="version"></div></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="settingHeader">Show Name:</td>
+			<td><div id="show"></div></td>
+			<td></td>
+		</tr>
+	</table>
+	</div>
+	</body>
+	</html>

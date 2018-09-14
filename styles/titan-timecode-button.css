@@ -1,0 +1,38 @@
+.titan-timecode-button {
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 1vh;
+    padding-top: 4vh;
+    border: 3px solid #dd0031;
+    overflow: hidden;
+    cursor: pointer;
+    background: #888b8d;
+    padding: 4px;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 15px;
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.titan-timecode-button:hover {
+    font: #000000;
+    background: none;
+    border: 4px solid #00A6FF
+}
+
+    .titan-timecode-button.active {
+        font: #000000;
+        color: #000000;
+        background-color: chocolate;
+        text-decoration: none;
+        border: 4px solid #00A6FF
+    }
+
+.titan-timecode-button.empty {
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid #ffffff;
+}

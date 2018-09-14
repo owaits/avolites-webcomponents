@@ -1,0 +1,39 @@
+{
+  "name": "Titan Playback Fader",
+  "type": "titan-playback-fader",
+  "tagName": "titan-playback-fader",
+  "version": 0.1,
+  "description": "Sets the level of a playback.",
+"defaultWidth": 80,
+  "defaultHeight": 200,
+  "files": {
+    "js": [
+        "jquery.js",
+        "jquery-ui.js",
+        "settings.js",
+        "titan-webapi.js",
+        "titan-playback-fader.js"           
+    ]
+  },
+  "attributes": [
+   {
+    "name": "legend",
+    "label": "Legend",
+    "type": "string",
+    "required": true,
+    "description": "The legend of the playback."
+   },
+   {
+    "name": "user-number",
+    "label": "User Number",
+    "type": "integer",
+    "required": true,
+    "description": "The user number of the playback to fire."
+   }
+  ],
+  "events": [
+  ],
+  "methods": [
+  ],
+  "nestable": false
+}

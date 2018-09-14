@@ -1,0 +1,90 @@
+﻿body 
+{ 
+    background-color: white;
+	font-size: 1em;
+	font-family: MuseoSans, serif;
+}
+
+textarea {
+    width: 99%;
+    max-width:99%;
+}
+
+button{
+    background-color: #D9853B;
+    border: none;
+    color: white;
+    font-weight:bold;
+}
+
+.tabs{
+    max-width:600px;
+}
+
+.notice {
+    border: 3px solid #ccc;
+    background: #555555;
+    display: inline-block;
+    padding: 4px;
+    box-sizing: border-box;
+    text-decoration: none;
+    box-shadow: 3px 3px 5px #888888;
+    margin:15px;
+	height:100px;
+	width:150px;
+	cursor: pointer;
+}
+
+.notice.checked{
+	background: #0066ff;
+}
+
+.notice .text {
+    padding:10px;
+    width:80%;
+	font-family:Verdana;
+	font-size:10pt;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+}
+
+.notice .enable {
+    float:left;
+    display:inline-block;
+}
+
+.notice .delete {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+    background: none;
+    border: none;
+    color: black;
+}
+
+.notice .play {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+    background: none;
+    border: none;
+    color: black;
+}
+
+.notice .add {
+
+}
+
+.notice .fader {
+	float:left;
+	display:inline-block;
+	height: 50px;
+	cursor: pointer;
+}
+
+input[type=range][orient=vertical]
+{
+-webkit-appearance: slider-vertical;
+}
+

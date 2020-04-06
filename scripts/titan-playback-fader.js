@@ -21,19 +21,10 @@ if (document.registerElement) {
           this.addEventListener('input',this.input);
           this.style="cursor: pointer"
 		  
-		  addTitanStatusListener(this.getAttribute('user-number'),slider,function(item){ return item["Information"][1]["Level"];}, 0, function(sender, status, defaultValue)
+		  addTitanStatusListener(this.getAttribute('user-number'),slider,function(item){ return item["information"][1]["Level"];}, 0, function(sender, status, defaultValue)
 		  {
-			var level = status["Information"][1]["Level"];
+			var level = status["information"][1]["Level"];
 			sender.value = level * 100;
-
-			/*if(status["Active"] != defaultValue)
-			{			
-				sender.addClass('active');
-			}
-			else
-			{
-				sender.removeClass('active');
-			}*/
 		  });
       },
       enumerable: true

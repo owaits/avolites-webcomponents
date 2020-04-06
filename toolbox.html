@@ -1,0 +1,98 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avolites WebAPI - Timecode</title>
+    <link href="styles/avolites-style.css" rel="stylesheet" />
+    <link href="styles/avolites-tabStyle.css" rel="stylesheet" />
+    <link href="styles/titan-playback-button.css" rel="stylesheet" />
+    <link href="styles/titan-timecode-button.css" rel="stylesheet" />
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
+    <script src="scripts/document-register-element.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/titan-webapi.js"></script>
+    <script src="scripts/titan-playback-button.js"></script>
+    <script src="scripts/titan-playback-fader.js"></script>
+    <script src="scripts/titan-cue-button.js"></script>
+    <script src="scripts/titan-macro-button.js"></script>
+    <script src="scripts/titan-timecode-button.js"></script>
+
+    <script>
+        //setTitanDebug(true);
+        startStatusUpdate();
+        //setIPAddress("localhost");
+
+        $(document).ready(function () {
+            refresh();
+        });
+
+        function refresh() {
+
+        }
+
+    </script>
+</head>
+<body>
+
+    <div class="avoHeader">
+        <a href="index.html"><img src="images\avoLogo.png" height="40px"></a>
+        <div class="avoHeaderText">TOOLBOX</div>
+    </div>
+
+    <div>
+        <h2>Playback Button</h2>
+        <span><titan-playback-button user-number="1" legend="Playback 1" level="1" class="titan-playback-button" toggle /></span>
+        <span><titan-playback-button user-number="2" legend="Playback 2" level="1" class="titan-playback-button" toggle /></span>
+        <span><titan-playback-button user-number="3" legend="Playback 3" level="1" class="titan-playback-button" toggle /></span>
+        <span><titan-playback-button user-number="4" legend="Playback 4" level="1" class="titan-playback-button" toggle /></span>
+    </div>
+
+    <div>
+        <h2>Playback Fader</h2>
+        <span><titan-playback-fader user-number="1" legend="Playback 1" /></span>
+        <span>
+            <titan-playback-fader user-number="2" legend="Playback 2" />
+        </span>
+        <span>
+            <titan-playback-fader user-number="3" legend="Playback 3" />
+        </span>
+        <span><titan-playback-fader user-number="4" legend="Playback 4" /></span>
+</div>
+    <div>
+        <h2>Cue Button</h2>
+        <span>
+            <titan-cue-button user-number="1" cue="1" legend="Cue 1" level="1" class="titan-playback-button" toggle />
+        </span>
+        <span>
+            <titan-cue-button user-number="1" cue="1" legend="Cue 2" level="1" class="titan-playback-button" toggle />
+        </span>
+        <span>
+            <titan-cue-button user-number="1" cue="1" legend="Cue 3" level="1" class="titan-playback-button" toggle />
+        </span>
+        <span> <titan-cue-button user-number="1" cue="1" legend="Cue 4" level="1" class="titan-playback-button" toggle /></span>
+</div>
+    <div>
+        <h2>Macro Button</h2>
+        <span><titan-macro-button user-number="1" legend="Macro 1" level="1" class="titan-playback-button" toggle /></span>
+        <span>
+            <titan-macro-button user-number="2" legend="Macro 2" level="1" class="titan-playback-button" toggle />
+        </span>
+        <span>
+            <titan-macro-button user-number="3" legend="Macro 3" level="1" class="titan-playback-button" toggle />
+        </span>
+        <span><titan-macro-button user-number="4" legend="Macro 4" level="1" class="titan-playback-button" toggle /></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>

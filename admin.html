@@ -18,6 +18,7 @@
 	
 	function refresh(){
 		$('#ipAddress').text(ipAddress());
+        $('#port').text(port());
 		
 		$('#status').text("No Connection");
 		deviceInfo(function(data)
@@ -36,33 +37,38 @@
             <div class="avoHeaderText">ADMIN</div>
         </div>
 	<div id="container">
-	<table>
-		<tr>
-			<td class="settingHeader">Status:</td>
-			<td><div id="status"></div></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td class="settingHeader">IP Address:</td>
-			<td><div id="ipAddress"></div></td>
-			<td width="100"><div class="button" onclick="changeIpAddress();refresh();" >Set</div></td>
-		</tr>
-		<tr>
-			<td class="settingHeader">Console:</td>
-			<td><div id="legend"></div></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td class="settingHeader">Software Version:</td>
-			<td><div id="version"></div></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td class="settingHeader">Show Name:</td>
-			<td><div id="show"></div></td>
-			<td></td>
-		</tr>
-	</table>
+		<table>
+			<tr>
+				<td class="settingHeader">Status:</td>
+				<td><div id="status"></div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="settingHeader">IP Address:</td>
+				<td><div id="ipAddress"></div></td>
+				<td width="100"><div class="button" onclick="changeIpAddress();refresh();">Set</div></td>
+			</tr>
+			<tr>
+				<td class="settingHeader">Port:</td>
+				<td><div id="port"></div></td>
+				<td width="100"><div class="button" onclick="changePort();refresh();">Set</div></td>
+			</tr>
+			<tr>
+				<td class="settingHeader">Console:</td>
+				<td><div id="legend"></div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="settingHeader">Software Version:</td>
+				<td><div id="version"></div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="settingHeader">Show Name:</td>
+				<td><div id="show"></div></td>
+				<td></td>
+			</tr>
+		</table>
 	</div>
 	</body>
 	</html>

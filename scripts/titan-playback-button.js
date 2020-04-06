@@ -6,24 +6,24 @@ if (document.registerElement) {
       value:
       function() {
           this.updateDOM();
-          this.addEventListener('click',this.click);
-          this.style="cursor: pointer;text-align:center;vertical-align:middle;display: inline-block;"
-		  $(this).addClass('empty');
+          this.addEventListener('click', this.click);
+          
+          $(this).addClass('empty');
 		  	  
-		  addTitanStatusListener(this.getAttribute('user-number'),this,function(item){ return item["Active"];}, (this.getAttribute('level')== 0), function(sender, status, defaultValue)
+		  addTitanStatusListener(this.getAttribute('user-number'),this,function(item){ return item["active"];}, (this.getAttribute('level')== 0), function(sender, status, defaultValue)
 		  {
 			if(!sender.hasAttribute('legend'))
-				sender.innerHTML = status["Legend"];
-			  
-			if(status["Active"] != defaultValue)
+                  sender.innerHTML = status["Legend"];               
+
+			if(status["active"] != defaultValue)
 			{			
 				$(sender).addClass('active');
 			}
 			else
 			{
 				$(sender).removeClass('active');
-			}
-			
+              }
+
 			$(sender).removeClass('empty');
 		  });
       },
@@ -58,6 +58,9 @@ if (document.registerElement) {
             case 'legend':
                 this.updateDOM();
                 break;
+            case 'icon':
+                this.updateDOM();
+                break;
           case 'user-number':
             this.updateDOM();
             break;
@@ -75,7 +78,11 @@ if (document.registerElement) {
         var legend = this.getAttribute('legend');
         if (legend) {
           this.innerHTML = legend;
-        }	
+          }	
+
+          this.style = "cursor: pointer;text-align:center;vertical-align:middle;display: inline-block;"
+          if (this.hasAttribute('icon') && this["icon"] != null)
+              this.style += ";background-image: url('" + this['icon'] + "')"
       }
     },
       click: {

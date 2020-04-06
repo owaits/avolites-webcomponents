@@ -2,6 +2,7 @@ $.support.cors = true;
 
 var titanDebug = false;
 var localIPAddress = null;
+var localIPAddress = null;
 
 String.prototype.format = function () {
 	var args = arguments;
@@ -22,6 +23,11 @@ function changeIpAddress() {
 	localStorage.setItem("ip", ipString);
 }
 
+function changePort() {
+	portString = prompt("Please enter the console TCP Port:", "");
+	localStorage.setItem("port", portString);
+}
+
 function setIPAddress(address) {
 	localIPAddress = address
 }
@@ -35,13 +41,21 @@ function ipAddress() {
 	return ipString;
 };
 
+function port() {
+	var ipString = localStorage.getItem("port");
+	if (ipString == null) {
+		return "4430"
+	}
+	return ipString;
+};
+
 function runAcw(script, success) {
 	var functionEnd = script.indexOf("(", 0);
 	var functionName = script.substring(0, functionEnd).replace(/\./g, "/").trim();
 	var arguments = script.substring(functionEnd + 1).replace(/,/g, "&").replace(/'/g, "").trim();
 	arguments = arguments.substring(0, arguments.length - 1)
 
-	var url = "http://{0}:4430/titan/script/2/{1}".format(ipAddress(), functionName + "?" + arguments);
+	var url = "http://{0}:{1}/titan/script/2/{2}".format(ipAddress(), port(), functionName + "?" + arguments);
 	
 	if(titanDebug)
 	{
@@ -61,7 +75,7 @@ function runAcw(script, success) {
 
 function getAcw(script, success, fail) {
     script = script.replace(/\./g, "/").replace(/,/g, "&").replace("(", "?").replace(")", "");
-    var url = "http://{0}:4430/titan/get/{1}".format(ipAddress(), script);
+    var url = "http://{0}:{1}/titan/get/{2}".format(ipAddress(),port(), script);
     $.getJSON(url, success)
         .fail(function (jqXHr, textStatus, errorThrown) {
             if (fail === undefined || fail === null) {
@@ -74,7 +88,7 @@ function getAcw(script, success, fail) {
 }
 
 function baseGet(urlParts, success, fail) {
-    var url = "http://{0}:4430/titan/{1}".format(ipAddress(), urlParts);
+    var url = "http://{0}:{1}/titan/{2}".format(ipAddress(),port(), urlParts);
     $.getJSON(url, success)
         .fail(function (jqXHr, textStatus, errorThrown) {
             if (fail === undefined || fail === null) {
@@ -129,11 +143,11 @@ function updatePropertyStatus(sponsors, propertyId)
 
 function updateHandleGroupStatus(groupName)
 {
-		var url = "http://{0}:4430/titan/handles/{1}?verbose=true".format(ipAddress(),groupName);
+		var url = "http://{0}:{1}/titan/handles/{2}?verbose=true".format(ipAddress(),port(),groupName);
 		
 		$.getJSON(url, function (data) {
 			data.forEach(function (value) {
-				var sponsors = statusListeners.get(value["UserNumber"]["hashCode"]);
+				var sponsors = statusListeners.get(value["userNumber"]["hashCode"]);
 				if(sponsors)
 				{		
 					sponsors.forEach(function (report){
@@ -146,7 +160,7 @@ function updateHandleGroupStatus(groupName)
 							if(report.select(value) != report.value)
 							{
 								report.callback(report.sender, value,report.defaultValue);
-								report.value = value[report.key];
+								report.value = report.select(value);
 							}
 						}
 					});
@@ -280,8 +294,12 @@ function lampOff() {
 	runAcw("Fixtures.Macros.FireMacro('Lamp Off')");
 }
 
-function getPresets(success, fail) {
+function getHandles(success, fail) {
     baseGet("handles", success, fail);
+}
+
+function getHandles(group, success, fail) {
+	baseGet("handles/" + group, success, fail);
 }
 
 function enableTimecode(enabled) {

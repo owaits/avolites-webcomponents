@@ -8,21 +8,28 @@ if (document.registerElement) {
       function() {
           this.updateDOM();
           this.addEventListener('click',this.click);
-          this.style="cursor: pointer;text-align:center;vertical-align:middle;display: inline-block;"
+          this.style = "cursor: pointer;text-align:center;vertical-align:middle;display: inline-block;"
+
+          $(this).addClass('empty');
 		  
-		  addTitanStatusListener(this.getAttribute('user-number'),$(this),function(item){ return item["Information"][1]["LiveCue"];}, this.getAttribute('cue'), function(sender, status, defaultValue)
-		  {
-			  var liveCue = status["Information"][1]["LiveCue"];
-			  var allCues = status["Information"][0]["Cues"];
+		  addTitanStatusListener(this.getAttribute('user-number'),$(this),function(item){ return item["information"][1]["LiveCue"];}, this.getAttribute('cue'), function(sender, status, defaultValue)
+          {
+              if (!sender.hasAttribute('legend'))
+                  sender.innerHTML = status["Legend"];     
+
+			  var liveCue = status["information"][1]["LiveCue"];
+			  var allCues = status["information"][0]["Cues"];
 			  var liveCueNumber = allCues.indexOf(liveCue) + 1;
-			if(liveCueNumber == defaultValue)
-			{			
-				sender.addClass('active');
-			}
-			else
-			{
-				sender.removeClass('active');
-			}
+			    if(liveCueNumber == defaultValue)
+			    {			
+				    sender.addClass('active');
+			    }
+			    else
+			    {
+				    sender.removeClass('active');
+              }
+
+              $(sender).removeClass('empty');
 		  });
       },
       enumerable: true

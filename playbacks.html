@@ -1,0 +1,141 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avolites WebAPI - Timecode</title>
+    <link href="styles/avolites-style.css" rel="stylesheet" />
+    <link href="styles/avolites-tabStyle.css" rel="stylesheet" />
+    <link href="styles/titan-playback-button.css" rel="stylesheet" />
+    <link href="styles/titan-timecode-button.css" rel="stylesheet" />
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
+    <script src="scripts/document-register-element.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/titan-webapi.js"></script>
+    <script src="scripts/titan-playback-button.js"></script>
+    <script src="scripts/titan-playback-fader.js"></script>
+    <script src="scripts/titan-timecode-button.js"></script>
+
+    <script>
+        //setTitanDebug(true);
+        startStatusUpdate();
+        //setIPAddress("localhost");
+
+        $(document).ready(function () {
+            //$(".tabs").on("click", ".add", function () {
+            //    addMessage($(this).data("list"));
+            //});
+
+            //$(".tabs").on("click", ".delete", function (e) {
+            //    killPlayback($(this).closest("#playback").parent().data("list"), $(this).closest("#playback").parent().data("message"));
+            //});
+
+            //$(".tabs").on("click", ".notice", function (e) {
+            //    togglePlayback($(this).closest("#playback").data("list"), $(this).closest("#playback").data("message"));
+            //});
+
+            //$(".tabs").on("input", ".fader", function (e) {
+            //    playbackLevel($(this).closest("#playback").data("list"), $(this).closest("#playback").data("message"), $(this).val());
+            //});
+
+            //$(".tabs").on("click", ".enabled", function (e) {
+            //    enableMessage($(this).parent().data("list"), $(this).parent().data("message"), e.target.checked);
+            //});
+
+            refresh();
+        });
+
+        function refresh() {
+            $("#tabHeader").empty();
+
+            var isActive = " active";
+            for (n = 0; n < 4; n++) {
+                var pageId = "page" + n;
+                var pageName = "PAGE " + (n + 1);
+
+                var htmFragment = $("#tabHeaderTemplate").html();
+                htmFragment = htmFragment.format(pageId, isActive, pageName);
+                $("#tabHeader").append(htmFragment);
+
+                htmFragment = $("#tabContentTemplate").html();
+                htmFragment = htmFragment.format(pageId, isActive);
+                $("#tabContent").append(htmFragment);
+
+                refreshGroup(pageId);
+
+                isActive = "";
+            }
+        }
+
+        function refreshGroup(pageId) {
+            var groupRegion = $("div#" + pageId)
+
+            getHandles("Playbacks", function (data) {
+                groupRegion.empty();
+                var index = 1;
+                data.forEach(function (value) {
+                    var isChecked = "";
+                    var imageName = "pb" + index;
+                    if (value["Active"])
+                        isChecked = " checked";
+
+                    var htmFragment = $("#handle").html();
+                    htmFragment = htmFragment.format(pageId, value["userNumber"]["userNumbers"][0], value["legend"], value["icon"]);
+                    groupRegion.append(htmFragment);
+                    index++;
+                });
+            },
+                function (jqXHr, textStatus, errorThrown) {
+                    alert(jqXHr.statusText);
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <div class="avoHeader">
+        <a href="index.html"><img src="images\avoLogo.png" height="40px"></a>
+        <div class="avoHeaderText">PLAYBACKS</div>
+    </div>
+
+    <div class="tabs">
+        <div id="tabHeader">
+        </div>
+        <div id="tabContent">
+        </div>
+    </div>
+
+    <template id="tabHeaderTemplate">
+        <a href="#" data-tab="{0}" class="tab{1}">{2}</a>
+    </template>
+
+    <template id="handle">
+        <titan-playback-button user-number="{1}" legend="{2}" icon="{3}" level="1" class="titan-playback-button" toggle />
+    </template>
+
+    <template id="tabContentTemplate">
+        <div data-content="{0}" class="content{1}">
+            <div id="{0}"></div>
+        </div>
+    </template>
+
+    <script>
+        $(function () {
+            $(".tabs").on('click', '[data-tab]', function (e) {
+                $(this)
+                    .addClass('active')
+                    .siblings('[data-tab]')
+                    .removeClass('active')
+                    .parent().siblings('#tabContent')
+                    .children('[data-content=' + $(this).data('tab') + ']')
+                    .addClass('active')
+                    .siblings('[data-content]')
+                    .removeClass('active');
+                e.preventDefault();
+            });
+
+        });
+    </script>
+
+</body>

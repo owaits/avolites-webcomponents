@@ -11,8 +11,8 @@ if (document.registerElement) {
                     $(this).addClass('empty');
 
                     addTitanStatusListener(this.getAttribute('user-number'), this, function (item) { return item["active"]; }, (this.getAttribute('level') == 0), function (sender, status, defaultValue) {
-                        if (!sender.hasAttribute('legend'))
-                            sender.innerHTML = status["Legend"];
+                        if (!sender[0].hasAttribute('legend'))
+                            sender[0].innerHTML = status["Legend"];
 
                         if (status["active"] != defaultValue) {
                             $(sender).addClass('active');

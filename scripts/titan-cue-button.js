@@ -14,8 +14,8 @@ if (document.registerElement) {
 		  
 		  addTitanStatusListener(this.getAttribute('user-number'),$(this),function(item){ return item["information"][1]["LiveCue"];}, this.getAttribute('cue'), function(sender, status, defaultValue)
           {
-              if (!sender.hasAttribute('legend'))
-                  sender.innerHTML = status["Legend"];     
+              if (!sender[0].hasAttribute('legend'))
+                  sender[0].innerHTML = status["Legend"];     
 
 			  var liveCue = status["information"][1]["LiveCue"];
 			  var allCues = status["information"][0]["Cues"];
@@ -29,7 +29,7 @@ if (document.registerElement) {
 				    sender.removeClass('active');
               }
 
-              $(sender).removeClass('empty');
+              sender.removeClass('empty');
 		  });
       },
       enumerable: true
